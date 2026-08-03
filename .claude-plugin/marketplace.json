@@ -1,0 +1,16 @@
+{
+  "name": "version-story",
+  "owner": {
+    "name": "Version Story"
+  },
+  "metadata": {
+    "description": "Official Version Story plugins for document comparison and redlining."
+  },
+  "plugins": [
+    {
+      "name": "version-story",
+      "source": "./plugins/version-story",
+      "description": "Create Version Story redlines from documents on your computer."
+    }
+  ]
+}

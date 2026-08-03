@@ -1,0 +1,15 @@
+{
+  "name": "version-story",
+  "displayName": "Version Story Compare",
+  "version": "0.13.0",
+  "description": "Create Version Story redlines from documents on your computer.",
+  "author": {
+    "name": "Version Story"
+  },
+  "keywords": [
+    "version-story",
+    "document-comparison",
+    "redline",
+    "local-mcp"
+  ]
+}
