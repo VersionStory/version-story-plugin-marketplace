@@ -47605,7 +47605,7 @@ function resolveStateDirectory() {
   return configured;
 }
 var STATE_DIRECTORY = resolveStateDirectory();
-var AUTH_STATE_FILE = path.join(STATE_DIRECTORY, "auth.json");
+var AUTH_STATE_FILE = path.join(STATE_DIRECTORY, `auth-${new URL(MCP_SERVER_URL).hostname}.json`);
 var CLIENT_INSTRUCTIONS_URL = MCP_SERVER_URL.replace(/\/mcp\/?$/, "") + "/client-instructions";
 var OAUTH_CALLBACK_PORT = 8976;
 var OAUTH_REDIRECT_URL = `http://localhost:${OAUTH_CALLBACK_PORT}/callback`;
@@ -47822,7 +47822,7 @@ function startSignIn() {
     authProvider: provider,
     fetch: proxyAwareFetch
   });
-  const client = new Client({ name: "compare", version: "0.13.0" });
+  const client = new Client({ name: "compare", version: "0.13.1" });
   const codeWaiter = waitForAuthorizationCode();
   let settled = false;
   async function finishWithCode(authorizationCode) {
@@ -47836,7 +47836,7 @@ function startSignIn() {
       authProvider: new FileOAuthProvider(),
       fetch: proxyAwareFetch
     });
-    const verifyClient = new Client({ name: "compare", version: "0.13.0" });
+    const verifyClient = new Client({ name: "compare", version: "0.13.1" });
     await verifyClient.connect(verifyTransport);
     const status = await verifyClient.callTool({ name: "check_connection", arguments: {} });
     await verifyClient.close();
@@ -49468,7 +49468,7 @@ var RemoteVersionStoryClient = class {
       authProvider: new FileOAuthProvider(),
       fetch: proxyAwareFetch
     });
-    const client = new Client({ name: "version-story-desktop-client", version: "0.1.0" });
+    const client = new Client({ name: "version-story-desktop-client", version: "0.13.1" });
     try {
       await client.connect(transport);
     } catch (error2) {
@@ -49762,7 +49762,7 @@ function defaultOutputDirectory(args) {
 async function startServer() {
   await initializeInstructionBundle();
   const server = new McpServer(
-    { name: "compare", version: "0.12.1" },
+    { name: "compare", version: "0.13.1" },
     { instructions: serverInstructions() }
   );
   server.registerTool(

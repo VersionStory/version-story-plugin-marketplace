@@ -1,7 +1,7 @@
 {
   "name": "version-story",
   "displayName": "Version Story Compare",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "Create Version Story redlines from documents on your computer.",
   "author": {
     "name": "Version Story"
