@@ -19,9 +19,13 @@ This repository distributes the official Version Story Compare plugin for Claude
 
 ## Updating
 
-Releases are published by updating the plugin version in
-`plugins/version-story/.claude-plugin/plugin.json`. Refresh the marketplace or enable automatic
-updates to receive new versions.
+Beginning with version 0.14.0, the plugin checks Version Story for a newer release when it starts.
+When an update is available, Claude downloads the new `.plugin` file and gives the user the
+organization-admin installation steps.
+
+Organization owners can also download the [latest production plugin](https://mcp-compare.versionstory.com/plugin-download),
+then open **Organization settings → Plugins → Add plugins → Upload a file**. Uploading a newer
+Version Story plugin with the same name replaces the installed version.
 
 ## Support
 
