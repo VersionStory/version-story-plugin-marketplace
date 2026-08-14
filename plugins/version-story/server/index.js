@@ -3236,8 +3236,8 @@ var require_utils = __commonJS({
       }
       return ind;
     }
-    function removeDotSegments(path6) {
-      let input = path6;
+    function removeDotSegments(path5) {
+      let input = path5;
       const output = [];
       let nextSlash = -1;
       let len = 0;
@@ -3489,8 +3489,8 @@ var require_schemes = __commonJS({
         wsComponent.secure = void 0;
       }
       if (wsComponent.resourceName) {
-        const [path6, query] = wsComponent.resourceName.split("?");
-        wsComponent.path = path6 && path6 !== "/" ? path6 : void 0;
+        const [path5, query] = wsComponent.resourceName.split("?");
+        wsComponent.path = path5 && path5 !== "/" ? path5 : void 0;
         wsComponent.query = query;
         wsComponent.resourceName = void 0;
       }
@@ -6909,12 +6909,12 @@ var require_dist = __commonJS({
         throw new Error(`Unknown format "${name}"`);
       return f;
     };
-    function addFormats(ajv, list, fs6, exportName) {
+    function addFormats(ajv, list, fs5, exportName) {
       var _a;
       var _b;
       (_a = (_b = ajv.opts.code).formats) !== null && _a !== void 0 ? _a : _b.formats = (0, codegen_1._)`require("ajv-formats/dist/formats").${exportName}`;
       for (const f of list)
-        ajv.addFormat(f, fs6[f]);
+        ajv.addFormat(f, fs5[f]);
     }
     module.exports = exports = formatsPlugin;
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -8134,14 +8134,14 @@ var require_util2 = __commonJS({
         }
         const port = url2.port != null ? url2.port : url2.protocol === "https:" ? 443 : 80;
         let origin = url2.origin != null ? url2.origin : `${url2.protocol || ""}//${url2.hostname || ""}:${port}`;
-        let path6 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
+        let path5 = url2.path != null ? url2.path : `${url2.pathname || ""}${url2.search || ""}`;
         if (origin[origin.length - 1] === "/") {
           origin = origin.slice(0, origin.length - 1);
         }
-        if (path6 && path6[0] !== "/") {
-          path6 = `/${path6}`;
+        if (path5 && path5[0] !== "/") {
+          path5 = `/${path5}`;
         }
-        return new URL(`${origin}${path6}`);
+        return new URL(`${origin}${path5}`);
       }
       if (!isHttpOrHttpsPrefixed(url2.origin || url2.protocol)) {
         throw new InvalidArgumentError("Invalid URL protocol: the URL must start with `http:` or `https:`.");
@@ -8962,9 +8962,9 @@ var require_diagnostics = __commonJS({
         "undici:client:sendHeaders",
         (evt) => {
           const {
-            request: { method, path: path6, origin }
+            request: { method, path: path5, origin }
           } = evt;
-          debugLog("sending request to %s %s%s", method, origin, path6);
+          debugLog("sending request to %s %s%s", method, origin, path5);
         }
       );
     }
@@ -8982,14 +8982,14 @@ var require_diagnostics = __commonJS({
         "undici:request:headers",
         (evt) => {
           const {
-            request: { method, path: path6, origin },
+            request: { method, path: path5, origin },
             response: { statusCode }
           } = evt;
           debugLog(
             "received response to %s %s%s - HTTP %d",
             method,
             origin,
-            path6,
+            path5,
             statusCode
           );
         }
@@ -8998,23 +8998,23 @@ var require_diagnostics = __commonJS({
         "undici:request:trailers",
         (evt) => {
           const {
-            request: { method, path: path6, origin }
+            request: { method, path: path5, origin }
           } = evt;
-          debugLog("trailers received from %s %s%s", method, origin, path6);
+          debugLog("trailers received from %s %s%s", method, origin, path5);
         }
       );
       diagnosticsChannel.subscribe(
         "undici:request:error",
         (evt) => {
           const {
-            request: { method, path: path6, origin },
+            request: { method, path: path5, origin },
             error: error2
           } = evt;
           debugLog(
             "request to %s %s%s errored - %s",
             method,
             origin,
-            path6,
+            path5,
             error2.message
           );
         }
@@ -9129,7 +9129,7 @@ var require_request = __commonJS({
     var kHandler = /* @__PURE__ */ Symbol("handler");
     var Request = class {
       constructor(origin, {
-        path: path6,
+        path: path5,
         method,
         body,
         headers,
@@ -9146,11 +9146,11 @@ var require_request = __commonJS({
         maxRedirections,
         typeOfService
       }, handler) {
-        if (typeof path6 !== "string") {
+        if (typeof path5 !== "string") {
           throw new InvalidArgumentError("path must be a string");
-        } else if (path6[0] !== "/" && !(path6.startsWith("http://") || path6.startsWith("https://")) && method !== "CONNECT") {
+        } else if (path5[0] !== "/" && !(path5.startsWith("http://") || path5.startsWith("https://")) && method !== "CONNECT") {
           throw new InvalidArgumentError("path must be an absolute URL or start with a slash");
-        } else if (invalidPathRegex.test(path6)) {
+        } else if (invalidPathRegex.test(path5)) {
           throw new InvalidArgumentError("invalid request path");
         }
         if (typeof method !== "string") {
@@ -9225,7 +9225,7 @@ var require_request = __commonJS({
         this.completed = false;
         this.aborted = false;
         this.upgrade = upgrade || null;
-        this.path = query ? serializePathWithQuery(path6, query) : path6;
+        this.path = query ? serializePathWithQuery(path5, query) : path5;
         this.origin = origin;
         this.protocol = getProtocolFromUrlString(origin);
         this.idempotent = idempotent == null ? method === "HEAD" || method === "GET" : idempotent;
@@ -12007,7 +12007,7 @@ var require_util3 = __commonJS({
   "node_modules/undici/lib/web/fetch/util.js"(exports, module) {
     "use strict";
     var { Transform } = __require("node:stream");
-    var zlib = __require("node:zlib");
+    var zlib2 = __require("node:zlib");
     var { redirectStatusSet, referrerPolicyTokens, badPortsSet } = require_constants3();
     var { getGlobalOrigin } = require_global();
     var { collectAnHTTPQuotedString, parseMIMEType } = require_data_url();
@@ -12610,7 +12610,7 @@ var require_util3 = __commonJS({
             callback();
             return;
           }
-          this._inflateStream = (chunk[0] & 15) === 8 ? zlib.createInflate(this.#zlibOptions) : zlib.createInflateRaw(this.#zlibOptions);
+          this._inflateStream = (chunk[0] & 15) === 8 ? zlib2.createInflate(this.#zlibOptions) : zlib2.createInflateRaw(this.#zlibOptions);
           this._inflateStream.on("data", this.push.bind(this));
           this._inflateStream.on("end", () => this.push(null));
           this._inflateStream.on("error", (err) => this.destroy(err));
@@ -14408,7 +14408,7 @@ var require_client_h1 = __commonJS({
       return method !== "GET" && method !== "HEAD" && method !== "OPTIONS" && method !== "TRACE" && method !== "CONNECT";
     }
     function writeH1(client, request) {
-      const { method, path: path6, host, upgrade, blocking, reset } = request;
+      const { method, path: path5, host, upgrade, blocking, reset } = request;
       let { body, headers, contentLength } = request;
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH" || method === "QUERY" || method === "PROPFIND" || method === "PROPPATCH";
       if (util2.isFormDataLike(body)) {
@@ -14486,7 +14486,7 @@ var require_client_h1 = __commonJS({
       if (socket.setTypeOfService) {
         socket.setTypeOfService(request.typeOfService);
       }
-      let header = `${method} ${path6} HTTP/1.1\r
+      let header = `${method} ${path5} HTTP/1.1\r
 `;
       if (typeof host === "string") {
         header += `host: ${host}\r
@@ -15139,7 +15139,7 @@ var require_client_h2 = __commonJS({
     function writeH2(client, request) {
       const requestTimeout = request.bodyTimeout ?? client[kBodyTimeout];
       const session = client[kHTTP2Session];
-      const { method, path: path6, host, upgrade, expectContinue, signal, protocol, headers: reqHeaders } = request;
+      const { method, path: path5, host, upgrade, expectContinue, signal, protocol, headers: reqHeaders } = request;
       let { body } = request;
       if (upgrade != null && upgrade !== "websocket") {
         util2.errorRequest(client, request, new InvalidArgumentError(`Custom upgrade "${upgrade}" not supported over HTTP/2`));
@@ -15207,7 +15207,7 @@ var require_client_h2 = __commonJS({
           }
           headers[HTTP2_HEADER_METHOD] = "CONNECT";
           headers[HTTP2_HEADER_PROTOCOL] = "websocket";
-          headers[HTTP2_HEADER_PATH] = path6;
+          headers[HTTP2_HEADER_PATH] = path5;
           if (protocol === "ws:" || protocol === "wss:") {
             headers[HTTP2_HEADER_SCHEME] = protocol === "ws:" ? "http" : "https";
           } else {
@@ -15248,7 +15248,7 @@ var require_client_h2 = __commonJS({
         stream.setTimeout(requestTimeout);
         return true;
       }
-      headers[HTTP2_HEADER_PATH] = path6;
+      headers[HTTP2_HEADER_PATH] = path5;
       headers[HTTP2_HEADER_SCHEME] = protocol === "http:" ? "http" : "https";
       const expectsPayload = method === "PUT" || method === "POST" || method === "PATCH";
       if (body && typeof body.read === "function") {
@@ -17591,10 +17591,10 @@ var require_proxy_agent = __commonJS({
         };
         const {
           origin,
-          path: path6 = "/",
+          path: path5 = "/",
           headers = {}
         } = opts;
-        opts.path = origin + path6;
+        opts.path = origin + path5;
         if (!("host" in headers) && !("Host" in headers)) {
           const { host } = new URL(origin);
           headers.host = host;
@@ -19677,20 +19677,20 @@ var require_mock_utils = __commonJS({
       }
       return normalizedQp;
     }
-    function safeUrl(path6) {
-      if (typeof path6 !== "string") {
-        return path6;
+    function safeUrl(path5) {
+      if (typeof path5 !== "string") {
+        return path5;
       }
-      const pathSegments = path6.split("?", 3);
+      const pathSegments = path5.split("?", 3);
       if (pathSegments.length !== 2) {
-        return path6;
+        return path5;
       }
       const qp = new URLSearchParams(pathSegments.pop());
       qp.sort();
       return [...pathSegments, qp.toString()].join("?");
     }
-    function matchKey(mockDispatch2, { path: path6, method, body, headers }) {
-      const pathMatch = matchValue(mockDispatch2.path, path6);
+    function matchKey(mockDispatch2, { path: path5, method, body, headers }) {
+      const pathMatch = matchValue(mockDispatch2.path, path5);
       const methodMatch = matchValue(mockDispatch2.method, method);
       const bodyMatch = typeof mockDispatch2.body !== "undefined" ? matchValue(mockDispatch2.body, body) : true;
       const headersMatch = matchHeaders(mockDispatch2, headers);
@@ -19715,8 +19715,8 @@ var require_mock_utils = __commonJS({
       const basePath = key.query ? serializePathWithQuery(key.path, key.query) : key.path;
       const resolvedPath = typeof basePath === "string" ? safeUrl(basePath) : basePath;
       const resolvedPathWithoutTrailingSlash = removeTrailingSlash(resolvedPath);
-      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path6, ignoreTrailingSlash }) => {
-        return ignoreTrailingSlash ? matchValue(removeTrailingSlash(safeUrl(path6)), resolvedPathWithoutTrailingSlash) : matchValue(safeUrl(path6), resolvedPath);
+      let matchedMockDispatches = mockDispatches.filter(({ consumed }) => !consumed).filter(({ path: path5, ignoreTrailingSlash }) => {
+        return ignoreTrailingSlash ? matchValue(removeTrailingSlash(safeUrl(path5)), resolvedPathWithoutTrailingSlash) : matchValue(safeUrl(path5), resolvedPath);
       });
       if (matchedMockDispatches.length === 0) {
         throw new MockNotMatchedError(`Mock dispatch not matched for path '${resolvedPath}'`);
@@ -19755,19 +19755,19 @@ var require_mock_utils = __commonJS({
         mockDispatches.splice(index, 1);
       }
     }
-    function removeTrailingSlash(path6) {
-      while (path6.endsWith("/")) {
-        path6 = path6.slice(0, -1);
+    function removeTrailingSlash(path5) {
+      while (path5.endsWith("/")) {
+        path5 = path5.slice(0, -1);
       }
-      if (path6.length === 0) {
-        path6 = "/";
+      if (path5.length === 0) {
+        path5 = "/";
       }
-      return path6;
+      return path5;
     }
     function buildKey(opts) {
-      const { path: path6, method, body, headers, query } = opts;
+      const { path: path5, method, body, headers, query } = opts;
       return {
-        path: path6,
+        path: path5,
         method,
         body,
         headers,
@@ -20457,10 +20457,10 @@ var require_pending_interceptors_formatter = __commonJS({
       }
       format(pendingInterceptors) {
         const withPrettyHeaders = pendingInterceptors.map(
-          ({ method, path: path6, data: { statusCode }, persist, times, timesInvoked, origin }) => ({
+          ({ method, path: path5, data: { statusCode }, persist, times, timesInvoked, origin }) => ({
             Method: method,
             Origin: origin,
-            Path: path6,
+            Path: path5,
             "Status code": statusCode,
             Persistent: persist ? PERSISTENT : NOT_PERSISTENT,
             Invocations: timesInvoked,
@@ -20542,9 +20542,9 @@ var require_mock_agent = __commonJS({
         const acceptNonStandardSearchParameters = this[kMockAgentAcceptsNonStandardSearchParameters];
         const dispatchOpts = { ...opts };
         if (acceptNonStandardSearchParameters && dispatchOpts.path) {
-          const [path6, searchParams] = dispatchOpts.path.split("?");
+          const [path5, searchParams] = dispatchOpts.path.split("?");
           const normalizedSearchParams = normalizeSearchParams(searchParams, acceptNonStandardSearchParameters);
-          dispatchOpts.path = `${path6}?${normalizedSearchParams}`;
+          dispatchOpts.path = `${path5}?${normalizedSearchParams}`;
         }
         return this[kAgent].dispatch(dispatchOpts, handler);
       }
@@ -20945,12 +20945,12 @@ var require_snapshot_recorder = __commonJS({
        * @return {Promise<void>} - Resolves when snapshots are loaded
        */
       async loadSnapshots(filePath) {
-        const path6 = filePath || this.#snapshotPath;
-        if (!path6) {
+        const path5 = filePath || this.#snapshotPath;
+        if (!path5) {
           throw new InvalidArgumentError("Snapshot path is required");
         }
         try {
-          const data = await readFile(resolve(path6), "utf8");
+          const data = await readFile(resolve(path5), "utf8");
           const parsed = JSON.parse(data);
           if (Array.isArray(parsed)) {
             this.#snapshots.clear();
@@ -20964,7 +20964,7 @@ var require_snapshot_recorder = __commonJS({
           if (error2.code === "ENOENT") {
             this.#snapshots.clear();
           } else {
-            throw new UndiciError(`Failed to load snapshots from ${path6}`, { cause: error2 });
+            throw new UndiciError(`Failed to load snapshots from ${path5}`, { cause: error2 });
           }
         }
       }
@@ -20975,11 +20975,11 @@ var require_snapshot_recorder = __commonJS({
        * @returns {Promise<void>} - Resolves when snapshots are saved
        */
       async saveSnapshots(filePath) {
-        const path6 = filePath || this.#snapshotPath;
-        if (!path6) {
+        const path5 = filePath || this.#snapshotPath;
+        if (!path5) {
           throw new InvalidArgumentError("Snapshot path is required");
         }
-        const resolvedPath = resolve(path6);
+        const resolvedPath = resolve(path5);
         await mkdir(dirname(resolvedPath), { recursive: true });
         const data = Array.from(this.#snapshots.entries()).map(([hash, snapshot]) => ({
           hash,
@@ -21611,15 +21611,15 @@ var require_redirect_handler = __commonJS({
           return;
         }
         const { origin, pathname, search } = util2.parseURL(new URL(this.location, this.opts.origin && new URL(this.opts.path, this.opts.origin)));
-        const path6 = search ? `${pathname}${search}` : pathname;
-        const redirectUrlString = `${origin}${path6}`;
+        const path5 = search ? `${pathname}${search}` : pathname;
+        const redirectUrlString = `${origin}${path5}`;
         for (const historyUrl of this.history) {
           if (historyUrl.toString() === redirectUrlString) {
             throw new InvalidArgumentError(`Redirect loop detected. Cannot redirect to ${origin}. This typically happens when using a Client or Pool with cross-origin redirects. Use an Agent for cross-origin redirects.`);
           }
         }
         this.opts.headers = cleanRequestHeaders(this.opts.headers, statusCode === 303, this.opts.origin !== origin);
-        this.opts.path = path6;
+        this.opts.path = path5;
         this.opts.origin = origin;
         this.opts.query = null;
       }
@@ -23388,10 +23388,10 @@ var require_cache_handler = __commonJS({
       }
       return locationUrl.pathname + locationUrl.search;
     }
-    function deleteCachedUri(store, cacheKey, path6) {
+    function deleteCachedUri(store, cacheKey, path5) {
       deleteCachedValue(store, {
         ...cacheKey,
-        path: path6
+        path: path5
       });
       for (let i = 0; i < util2.safeHTTPMethods.length; i++) {
         const method = util2.safeHTTPMethods[i];
@@ -23399,7 +23399,7 @@ var require_cache_handler = __commonJS({
           deleteCachedValue(store, {
             ...cacheKey,
             method,
-            path: path6
+            path: path5
           });
         }
       }
@@ -23410,9 +23410,9 @@ var require_cache_handler = __commonJS({
       }
       const values = Array.isArray(headerValue) ? headerValue : [headerValue];
       for (let i = 0; i < values.length; i++) {
-        const path6 = getSameOriginPath(cacheKey, values[i]);
-        if (path6 !== void 0) {
-          deleteCachedUri(store, cacheKey, path6);
+        const path5 = getSameOriginPath(cacheKey, values[i]);
+        if (path5 !== void 0) {
+          deleteCachedUri(store, cacheKey, path5);
         }
       }
     }
@@ -27348,7 +27348,7 @@ var require_fetch = __commonJS({
     } = require_response();
     var { HeadersList } = require_headers();
     var { Request, cloneRequest, getRequestDispatcher, getRequestState } = require_request2();
-    var zlib = __require("node:zlib");
+    var zlib2 = __require("node:zlib");
     var {
       makePolicyContainer,
       clonePolicyContainer,
@@ -28290,11 +28290,11 @@ var require_fetch = __commonJS({
       function dispatch({ body }) {
         const url2 = requestCurrentURL(request);
         const agent = fetchParams.controller.dispatcher;
-        const path6 = url2.pathname + url2.search;
+        const path5 = url2.pathname + url2.search;
         const hasTrailingQuestionMark = url2.search.length === 0 && url2.href[url2.href.length - url2.hash.length - 1] === "?";
         return new Promise((resolve, reject) => agent.dispatch(
           {
-            path: hasTrailingQuestionMark ? `${path6}?` : path6,
+            path: hasTrailingQuestionMark ? `${path5}?` : path5,
             origin: url2.origin,
             method: request.method,
             body: agent.isMockActive ? request.body && (request.body.source || request.body.stream) : body,
@@ -28350,28 +28350,28 @@ var require_fetch = __commonJS({
                 for (let i = codings.length - 1; i >= 0; --i) {
                   const coding = codings[i].trim();
                   if (coding === "x-gzip" || coding === "gzip") {
-                    decoders.push(zlib.createGunzip({
+                    decoders.push(zlib2.createGunzip({
                       // Be less strict when decoding compressed responses, since sometimes
                       // servers send slightly invalid responses that are still accepted
                       // by common browsers.
                       // Always using Z_SYNC_FLUSH is what cURL does.
-                      flush: zlib.constants.Z_SYNC_FLUSH,
-                      finishFlush: zlib.constants.Z_SYNC_FLUSH
+                      flush: zlib2.constants.Z_SYNC_FLUSH,
+                      finishFlush: zlib2.constants.Z_SYNC_FLUSH
                     }));
                   } else if (coding === "deflate") {
                     decoders.push(createInflate({
-                      flush: zlib.constants.Z_SYNC_FLUSH,
-                      finishFlush: zlib.constants.Z_SYNC_FLUSH
+                      flush: zlib2.constants.Z_SYNC_FLUSH,
+                      finishFlush: zlib2.constants.Z_SYNC_FLUSH
                     }));
                   } else if (coding === "br") {
-                    decoders.push(zlib.createBrotliDecompress({
-                      flush: zlib.constants.BROTLI_OPERATION_FLUSH,
-                      finishFlush: zlib.constants.BROTLI_OPERATION_FLUSH
+                    decoders.push(zlib2.createBrotliDecompress({
+                      flush: zlib2.constants.BROTLI_OPERATION_FLUSH,
+                      finishFlush: zlib2.constants.BROTLI_OPERATION_FLUSH
                     }));
                   } else if (coding === "zstd" && hasZstd) {
-                    decoders.push(zlib.createZstdDecompress({
-                      flush: zlib.constants.ZSTD_e_continue,
-                      finishFlush: zlib.constants.ZSTD_e_end
+                    decoders.push(zlib2.createZstdDecompress({
+                      flush: zlib2.constants.ZSTD_e_continue,
+                      finishFlush: zlib2.constants.ZSTD_e_end
                     }));
                   } else {
                     decoders.length = 0;
@@ -29241,9 +29241,9 @@ var require_util5 = __commonJS({
         }
       }
     }
-    function validateCookiePath(path6) {
-      for (let i = 0; i < path6.length; ++i) {
-        const code = path6.charCodeAt(i);
+    function validateCookiePath(path5) {
+      for (let i = 0; i < path5.length; ++i) {
+        const code = path5.charCodeAt(i);
         if (code < 32 || // exclude CTLs (0-31)
         code > 126 || // exclude DEL and non-ascii
         code === 59) {
@@ -32480,11 +32480,11 @@ var require_undici = __commonJS({
           if (typeof opts.path !== "string") {
             throw new InvalidArgumentError("invalid opts.path");
           }
-          let path6 = opts.path;
+          let path5 = opts.path;
           if (!opts.path.startsWith("/")) {
-            path6 = `/${path6}`;
+            path5 = `/${path5}`;
           }
-          url2 = new URL(util2.parseOrigin(url2).origin + path6);
+          url2 = new URL(util2.parseOrigin(url2).origin + path5);
         } else {
           if (!opts) {
             opts = typeof url2 === "object" ? url2 : {};
@@ -33075,8 +33075,8 @@ function getErrorMap() {
 
 // node_modules/zod/v3/helpers/parseUtil.js
 var makeIssue = (params) => {
-  const { data, path: path6, errorMaps, issueData } = params;
-  const fullPath = [...path6, ...issueData.path || []];
+  const { data, path: path5, errorMaps, issueData } = params;
+  const fullPath = [...path5, ...issueData.path || []];
   const fullIssue = {
     ...issueData,
     path: fullPath
@@ -33192,11 +33192,11 @@ var errorUtil;
 
 // node_modules/zod/v3/types.js
 var ParseInputLazyPath = class {
-  constructor(parent, value, path6, key) {
+  constructor(parent, value, path5, key) {
     this._cachedPath = [];
     this.parent = parent;
     this.data = value;
-    this._path = path6;
+    this._path = path5;
     this._key = key;
   }
   get path() {
@@ -36833,10 +36833,10 @@ function assignProp(target, prop, value) {
     configurable: true
   });
 }
-function getElementAtPath(obj, path6) {
-  if (!path6)
+function getElementAtPath(obj, path5) {
+  if (!path5)
     return obj;
-  return path6.reduce((acc, key) => acc?.[key], obj);
+  return path5.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -37156,11 +37156,11 @@ function aborted(x, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path6, issues) {
+function prefixIssues(path5, issues) {
   return issues.map((iss) => {
     var _a;
     (_a = iss).path ?? (_a.path = []);
-    iss.path.unshift(path6);
+    iss.path.unshift(path5);
     return iss;
   });
 }
@@ -40661,11 +40661,11 @@ function normalizeObjectSchema(schema) {
   }
   return void 0;
 }
-function getDotPath(path6) {
-  if (path6.length === 0) {
+function getDotPath(path5) {
+  if (path5.length === 0) {
     return "object root";
   }
-  return path6.reduce((acc, seg, index) => {
+  return path5.reduce((acc, seg, index) => {
     if (index === 0) {
       return String(seg);
     }
@@ -47605,9 +47605,14 @@ function resolveStateDirectory() {
   return configured;
 }
 var STATE_DIRECTORY = resolveStateDirectory();
-var AUTH_STATE_FILE = path.join(STATE_DIRECTORY, `auth-${new URL(MCP_SERVER_URL).hostname}.json`);
+var PRODUCTION_SERVER_HOST = "mcp-compare.versionstory.com";
+var serverHost = new URL(MCP_SERVER_URL).hostname;
+var AUTH_STATE_FILE = path.join(
+  STATE_DIRECTORY,
+  serverHost === PRODUCTION_SERVER_HOST ? "auth.json" : `auth-${serverHost}.json`
+);
 var CLIENT_INSTRUCTIONS_URL = MCP_SERVER_URL.replace(/\/mcp\/?$/, "") + "/client-instructions";
-var PLUGIN_RELEASE_URL = MCP_SERVER_URL.replace(/\/mcp\/?$/, "") + "/plugin-release";
+var ICON_URL = MCP_SERVER_URL.replace(/\/mcp\/?$/, "") + "/icon.png";
 var OAUTH_CALLBACK_PORT = 8976;
 var OAUTH_REDIRECT_URL = `http://localhost:${OAUTH_CALLBACK_PORT}/callback`;
 var DEFAULT_OUTPUT_DIRECTORY = path.join(os.homedir(), "Downloads");
@@ -47616,11 +47621,6 @@ var DEFAULT_OUTPUT_DIRECTORY = path.join(os.homedir(), "Downloads");
 import fs from "fs";
 import path2 from "path";
 import { fileURLToPath } from "url";
-
-// src/version.ts
-var PLUGIN_VERSION = "0.14.0";
-
-// src/instruction-service.ts
 var BUNDLE_FETCH_TIMEOUT_MILLISECONDS = 3e3;
 var BUNDLE_CACHE_FILE = path2.join(STATE_DIRECTORY, "instructions-cache.json");
 var BUNDLE_SEED_FILE = path2.join(path2.dirname(fileURLToPath(import.meta.url)), "instructions-seed.json");
@@ -47632,10 +47632,17 @@ function readBundleFile(filePath) {
     return void 0;
   }
 }
+function fillMissingEntriesFromSeed() {
+  const seed = readBundleFile(BUNDLE_SEED_FILE);
+  if (!seed) {
+    return;
+  }
+  bundle.tools = { ...seed.tools, ...bundle.tools };
+  bundle.messages = { ...seed.messages, ...bundle.messages };
+}
 async function initializeInstructionBundle() {
   try {
     const response = await proxyAwareFetch(CLIENT_INSTRUCTIONS_URL, {
-      headers: { "X-Version-Story-Plugin-Version": PLUGIN_VERSION },
       signal: AbortSignal.timeout(BUNDLE_FETCH_TIMEOUT_MILLISECONDS)
     });
     if (!response.ok) {
@@ -47644,12 +47651,14 @@ async function initializeInstructionBundle() {
     bundle = await response.json();
     fs.mkdirSync(STATE_DIRECTORY, { recursive: true });
     fs.writeFileSync(BUNDLE_CACHE_FILE, JSON.stringify(bundle, null, 2));
+    fillMissingEntriesFromSeed();
     console.error(`[version-story] instruction bundle fetched from ${CLIENT_INSTRUCTIONS_URL}`);
     return;
   } catch {
     const cached2 = readBundleFile(BUNDLE_CACHE_FILE);
     if (cached2) {
       bundle = cached2;
+      fillMissingEntriesFromSeed();
       console.error("[version-story] instruction bundle fetch failed; using cached copy");
       return;
     }
@@ -47829,7 +47838,7 @@ function startSignIn() {
     authProvider: provider,
     fetch: proxyAwareFetch
   });
-  const client = new Client({ name: "compare", version: PLUGIN_VERSION });
+  const client = new Client({ name: "compare", version: "0.18.0" });
   const codeWaiter = waitForAuthorizationCode();
   let settled = false;
   async function finishWithCode(authorizationCode) {
@@ -47843,7 +47852,7 @@ function startSignIn() {
       authProvider: new FileOAuthProvider(),
       fetch: proxyAwareFetch
     });
-    const verifyClient = new Client({ name: "compare", version: PLUGIN_VERSION });
+    const verifyClient = new Client({ name: "compare", version: "0.18.0" });
     await verifyClient.connect(verifyTransport);
     const status = await verifyClient.callTool({ name: "check_connection", arguments: {} });
     await verifyClient.close();
@@ -47889,9 +47898,10 @@ async function login() {
 }
 
 // src/server.ts
-import fs5 from "fs/promises";
+import fs4 from "fs/promises";
 import fsSync from "fs";
-import path5 from "path";
+import path4 from "path";
+import zlib from "zlib";
 
 // node_modules/@modelcontextprotocol/sdk/dist/esm/experimental/tasks/server.js
 var ExperimentalServerTasks = class {
@@ -49465,6 +49475,12 @@ var StdioServerTransport = class {
 
 // src/remote-client.ts
 var TOOL_CALL_TIMEOUT_MILLISECONDS = 18e4;
+function isStaleSessionError(error2) {
+  return error2 instanceof StreamableHTTPError && error2.code === 404;
+}
+function isAuthRejectedError(error2) {
+  return error2 instanceof UnauthorizedError || error2 instanceof StreamableHTTPError && error2.code === 401;
+}
 var RemoteVersionStoryClient = class {
   client;
   async ensureConnected() {
@@ -49475,11 +49491,11 @@ var RemoteVersionStoryClient = class {
       authProvider: new FileOAuthProvider(),
       fetch: proxyAwareFetch
     });
-    const client = new Client({ name: "version-story-desktop-client", version: PLUGIN_VERSION });
+    const client = new Client({ name: "version-story-desktop-client", version: "0.18.0" });
     try {
       await client.connect(transport);
     } catch (error2) {
-      if (error2 instanceof UnauthorizedError) {
+      if (isAuthRejectedError(error2)) {
         throw new LoginRequiredError();
       }
       throw error2;
@@ -49487,8 +49503,29 @@ var RemoteVersionStoryClient = class {
     this.client = client;
     return client;
   }
+  /** Drop the cached client so the next call performs a fresh initialize handshake. */
+  async reset() {
+    const staleClient = this.client;
+    this.client = void 0;
+    try {
+      await staleClient?.close();
+    } catch {
+    }
+  }
   /** Call a remote tool and return its result parsed into a plain object. */
   async callTool(name, args) {
+    try {
+      return await this.callRemoteTool(name, args);
+    } catch (error2) {
+      if (!isStaleSessionError(error2)) {
+        throw error2;
+      }
+      console.error(`[version-story] remote session lost; re-initializing and retrying ${name}`);
+      await this.reset();
+      return await this.callRemoteTool(name, args);
+    }
+  }
+  async callRemoteTool(name, args) {
     const client = await this.ensureConnected();
     let result;
     try {
@@ -49497,8 +49534,8 @@ var RemoteVersionStoryClient = class {
         resetTimeoutOnProgress: true
       });
     } catch (error2) {
-      if (error2 instanceof UnauthorizedError) {
-        this.client = void 0;
+      if (isAuthRejectedError(error2)) {
+        await this.reset();
         throw new LoginRequiredError();
       }
       throw error2;
@@ -49533,6 +49570,7 @@ var DOCUMENT_TRANSFER_TIMEOUT_MILLISECONDS = 12e4;
 var UPLOAD_MAX_ATTEMPTS = 5;
 var UPLOAD_MAX_CONCURRENCY = 3;
 var UPLOAD_RETRY_BASE_DELAY_MILLISECONDS = 500;
+var UPLOAD_RETRY_MINIMUM_DELAY_MILLISECONDS = 250;
 function delay(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -49540,23 +49578,33 @@ function retryDelayMilliseconds(attempt, retryAfterHeader) {
   const jitter = Math.random() * 250;
   const retryAfterSeconds = Number(retryAfterHeader);
   if (retryAfterHeader && Number.isFinite(retryAfterSeconds) && retryAfterSeconds >= 0) {
-    return retryAfterSeconds * 1e3 + jitter;
+    return Math.max(retryAfterSeconds * 1e3, UPLOAD_RETRY_MINIMUM_DELAY_MILLISECONDS) + jitter;
   }
   return UPLOAD_RETRY_BASE_DELAY_MILLISECONDS * 2 ** attempt + jitter;
 }
-async function mapWithConcurrency(items, limit, task) {
-  const results = new Array(items.length);
-  let nextIndex = 0;
-  const workers = Array.from({ length: Math.min(limit, items.length) }, async () => {
-    while (nextIndex < items.length) {
-      const index = nextIndex;
-      nextIndex += 1;
-      results[index] = await task(items[index]);
+var Semaphore = class {
+  available;
+  waiters = [];
+  constructor(slots) {
+    this.available = slots;
+  }
+  async acquire() {
+    if (this.available > 0) {
+      this.available -= 1;
+      return;
     }
-  });
-  await Promise.all(workers);
-  return results;
-}
+    await new Promise((resolve) => this.waiters.push(resolve));
+  }
+  release() {
+    const next = this.waiters.shift();
+    if (next) {
+      next();
+    } else {
+      this.available += 1;
+    }
+  }
+};
+var uploadSlots = new Semaphore(UPLOAD_MAX_CONCURRENCY);
 async function uploadWithRetry(upload, bytes) {
   let lastFailure = "";
   for (let attempt = 0; attempt < UPLOAD_MAX_ATTEMPTS; attempt += 1) {
@@ -49601,15 +49649,22 @@ async function fetchTransferManifest(manifestUrl) {
   return await response.json();
 }
 async function uploadSourceDocuments(uploads) {
-  return mapWithConcurrency(uploads, UPLOAD_MAX_CONCURRENCY, async (upload) => {
-    const localPath = upload.local_path;
-    if (!localPath) {
-      throw new Error(`Upload manifest entry for ${upload.file_name} has no local_path`);
-    }
-    const bytes = await fs3.readFile(localPath);
-    await uploadWithRetry(upload, new Uint8Array(bytes));
-    return upload.file_name;
-  });
+  return Promise.all(
+    uploads.map(async (upload) => {
+      const localPath = upload.local_path;
+      if (!localPath) {
+        throw new Error(`Upload manifest entry for ${upload.file_name} has no local_path`);
+      }
+      await uploadSlots.acquire();
+      try {
+        const bytes = await fs3.readFile(localPath);
+        await uploadWithRetry(upload, new Uint8Array(bytes));
+      } finally {
+        uploadSlots.release();
+      }
+      return upload.file_name;
+    })
+  );
 }
 async function resolveCollisionFreePath(directory, fileName) {
   const { name, ext } = path3.parse(fileName);
@@ -49621,6 +49676,26 @@ async function resolveCollisionFreePath(directory, fileName) {
     } catch {
       return candidate;
     }
+  }
+}
+async function downloadText(textUrl, analysisDirectory, versionMappingId, fileName) {
+  try {
+    const response = await proxyAwareFetch(textUrl, {
+      signal: AbortSignal.timeout(DOCUMENT_TRANSFER_TIMEOUT_MILLISECONDS)
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+    const { name, ext } = path3.parse((fileName ?? "redline.txt").replace(/[/\\]/g, "-"));
+    const safeFileName = `${name} (${versionMappingId.slice(0, 8)})${ext}`;
+    await fs3.mkdir(analysisDirectory, { recursive: true });
+    const outputPath = path3.join(analysisDirectory, safeFileName);
+    await fs3.writeFile(outputPath, Buffer.from(await response.arrayBuffer()));
+    return outputPath;
+  } catch (error2) {
+    const message = error2 instanceof Error ? error2.message : String(error2);
+    console.error(`[version-story] analysis txt download skipped for ${versionMappingId}: ${message}`);
+    return null;
   }
 }
 async function downloadRedlines(downloads, outputDirectory) {
@@ -49640,109 +49715,14 @@ async function downloadRedlines(downloads, outputDirectory) {
   );
 }
 
-// src/update-service.ts
-import fs4 from "fs/promises";
-import path4 from "path";
-var RELEASE_FETCH_TIMEOUT_MILLISECONDS = 3e3;
-var availableRelease;
-var noticeDelivered = false;
-function versionParts(version2) {
-  const match = /^(\d+)\.(\d+)\.(\d+)$/.exec(version2);
-  if (!match) {
-    throw new Error(`Invalid Version Story plugin version: ${version2}`);
-  }
-  return match.slice(1).map(Number);
-}
-function isNewerVersion(candidate, installed) {
-  const candidateParts = versionParts(candidate);
-  const installedParts = versionParts(installed);
-  for (let index = 0; index < candidateParts.length; index += 1) {
-    if (candidateParts[index] !== installedParts[index]) {
-      return candidateParts[index] > installedParts[index];
-    }
-  }
-  return false;
-}
-async function initializePluginUpdate() {
-  try {
-    const response = await proxyAwareFetch(PLUGIN_RELEASE_URL, {
-      signal: AbortSignal.timeout(RELEASE_FETCH_TIMEOUT_MILLISECONDS)
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    const release = await response.json();
-    availableRelease = isNewerVersion(release.version, PLUGIN_VERSION) ? release : void 0;
-    console.error(
-      availableRelease ? `[version-story] plugin update available: ${PLUGIN_VERSION} -> ${release.version}` : `[version-story] plugin is current: ${PLUGIN_VERSION}`
-    );
-  } catch (error2) {
-    availableRelease = void 0;
-    console.error(
-      `[version-story] plugin update check failed: ${error2 instanceof Error ? error2.message : String(error2)}`
-    );
-  }
-}
-function updateSummary(release) {
-  return {
-    status: "update_available",
-    installed_version: PLUGIN_VERSION,
-    latest_version: release.version,
-    message: `Version Story Compare ${release.version} is available. Call download_plugin_update, then give the user its upgrade instructions.`
-  };
-}
-function pluginUpdateInstructions() {
-  if (!availableRelease) {
-    return "";
-  }
-  const update = updateSummary(availableRelease);
-  return [
-    "IMPORTANT PLUGIN UPDATE:",
-    update.message,
-    "Tell the user that an update is available before continuing their Version Story request."
-  ].join(" ");
-}
-function consumePluginUpdateNotice() {
-  if (!availableRelease || noticeDelivered) {
-    return void 0;
-  }
-  noticeDelivered = true;
-  return updateSummary(availableRelease);
-}
-async function downloadPluginUpdate(outputDirectory = DEFAULT_OUTPUT_DIRECTORY) {
-  if (!availableRelease) {
-    return {
-      status: "up_to_date",
-      installed_version: PLUGIN_VERSION,
-      message: "Version Story Compare is up to date."
-    };
-  }
-  const response = await proxyAwareFetch(availableRelease.download_url);
-  if (!response.ok) {
-    throw new Error(`Plugin update download failed: HTTP ${response.status}`);
-  }
-  await fs4.mkdir(outputDirectory, { recursive: true });
-  const downloadedFilePath = path4.join(outputDirectory, availableRelease.file_name);
-  await fs4.writeFile(downloadedFilePath, Buffer.from(await response.arrayBuffer()));
-  return {
-    status: "update_downloaded",
-    installed_version: PLUGIN_VERSION,
-    latest_version: availableRelease.version,
-    downloaded_file_path: downloadedFilePath,
-    upgrade_instructions: availableRelease.upgrade_instructions,
-    message: `Downloaded Version Story Compare ${availableRelease.version}. Render downloaded_file_path for the user and relay every upgrade instruction.`
-  };
-}
-
 // src/server.ts
 var remoteClient = new RemoteVersionStoryClient();
 var pendingSignIn = null;
 var GENERATION_WAIT_CAP_MILLISECONDS = 8 * 60 * 1e3;
-var STAGING_DIRECTORY = path5.join(STATE_DIRECTORY, "staging");
-function jsonResult(value, includeUpdateNotice = true) {
-  const updateNotice = includeUpdateNotice ? consumePluginUpdateNotice() : void 0;
-  const result = updateNotice && value && typeof value === "object" ? { ...value, plugin_update: updateNotice } : value;
-  return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+var STAGING_DIRECTORY = path4.join(STATE_DIRECTORY, "staging");
+var TEXT_DIRECTORY = path4.join(STATE_DIRECTORY, "text");
+function jsonResult(value) {
+  return { content: [{ type: "text", text: JSON.stringify(value, null, 2) }] };
 }
 function errorResult(error2) {
   const message = error2 instanceof Error ? error2.message : String(error2);
@@ -49763,7 +49743,7 @@ var PhaseTimer = class {
 `;
     console.error(`[version-story] timings: ${line.trim()}`);
     fsSync.mkdirSync(STATE_DIRECTORY, { recursive: true });
-    fsSync.appendFileSync(path5.join(STATE_DIRECTORY, "timings.log"), line);
+    fsSync.appendFileSync(path4.join(STATE_DIRECTORY, "timings.log"), line);
     return this.timings;
   }
 };
@@ -49794,7 +49774,7 @@ async function assertFilesExist(paths) {
   await Promise.all(
     paths.map(async (filePath) => {
       try {
-        await fs5.access(filePath);
+        await fs4.access(filePath);
       } catch {
         if (CLOUD_CONTAINER_PATH_PATTERN.test(filePath)) {
           throw new Error(`File not found: ${filePath}. ${resultMessage("container_path_rejected")}`.trim());
@@ -49803,6 +49783,14 @@ async function assertFilesExist(paths) {
       }
     })
   );
+}
+async function uploadStagedSourceDocuments(staged, timer) {
+  const inlineUploads = staged.uploads;
+  const uploads = inlineUploads && inlineUploads.length > 0 ? inlineUploads : (await fetchTransferManifest(staged.upload_manifest_url)).uploads ?? [];
+  timer.mark("fetch_upload_manifest");
+  const uploadedFileNames = await uploadSourceDocuments(uploads);
+  timer.mark("upload_sources");
+  return uploadedFileNames;
 }
 async function stageAndUpload(args, timer) {
   const sourcePaths = collectSourcePaths(args);
@@ -49820,12 +49808,50 @@ async function stageAndUpload(args, timer) {
     version_story_id: args.version_story_id
   });
   timer.mark("create_session");
-  const inlineUploads = staged.uploads;
-  const uploads = inlineUploads && inlineUploads.length > 0 ? inlineUploads : (await fetchTransferManifest(staged.upload_manifest_url)).uploads ?? [];
-  timer.mark("fetch_upload_manifest");
-  const uploadedFileNames = await uploadSourceDocuments(uploads);
-  timer.mark("upload_sources");
+  const uploadedFileNames = await uploadStagedSourceDocuments(staged, timer);
   return { staged, uploadedFileNames };
+}
+async function waitAndSaveGeneratedDocument(remoteToolName, remoteArguments, outputDirectory, timer, waitCapMilliseconds) {
+  const waitDeadline = Date.now() + waitCapMilliseconds;
+  let waited;
+  do {
+    waited = await remoteClient.callTool(remoteToolName, remoteArguments);
+  } while (waited.status === "processing" && Date.now() < waitDeadline);
+  timer.mark("wait_for_generation");
+  if (waited.status !== "ready" || !waited.download_manifest_url) {
+    delete waited.text_url;
+    delete waited.text_file_name;
+    return { waited, savedFiles: void 0 };
+  }
+  const manifest = await fetchTransferManifest(waited.download_manifest_url);
+  const savedFiles = await downloadRedlines(
+    manifest.downloads ?? [],
+    outputDirectory
+  );
+  timer.mark("download_generated_document");
+  await attachGeneratedDocumentText(waited, remoteArguments);
+  return { waited, savedFiles };
+}
+async function attachGeneratedDocumentText(waited, remoteArguments) {
+  const textUrl = waited.text_url;
+  const textFileName = waited.text_file_name;
+  delete waited.text_url;
+  delete waited.text_file_name;
+  if (!textUrl) {
+    return;
+  }
+  const uniqueSuffix = String(
+    remoteArguments.merge_version_id ?? remoteArguments.combine_version_id ?? remoteArguments.version_history_version_id ?? "document"
+  );
+  const textPath = await downloadText(
+    textUrl,
+    TEXT_DIRECTORY,
+    uniqueSuffix,
+    textFileName
+  );
+  if (textPath) {
+    waited.text_available = true;
+  }
 }
 async function resolveVersionMappingIds(versionStoryId) {
   const project = await remoteClient.callTool("list_project_comparisons", { version_story_id: versionStoryId });
@@ -49848,6 +49874,10 @@ async function waitAndSave(versionStoryId, versionMappingIds, downloadOptions, o
   } while (waited.status !== "ready" && Date.now() < waitDeadline);
   timer.mark("wait_for_generation");
   if (waited.status !== "ready" || !waited.download_manifest_url) {
+    for (const comparison of waited.comparisons ?? []) {
+      delete comparison.text_url;
+      delete comparison.text_file_name;
+    }
     return { waited, savedFiles: void 0 };
   }
   const manifest = await fetchTransferManifest(waited.download_manifest_url);
@@ -49856,42 +49886,244 @@ async function waitAndSave(versionStoryId, versionMappingIds, downloadOptions, o
     outputDirectory
   );
   timer.mark("download_redlines");
+  await attachTexts(waited);
+  timer.mark("download_text_renderings");
   return { waited, savedFiles };
+}
+function resolveTextFileName(comparison) {
+  if (comparison.text_file_name) {
+    return comparison.text_file_name;
+  }
+  const downloads = comparison.downloads ?? [];
+  const download = downloads.find((entry) => entry.file_name && entry.option !== "pdf_changed_pages_only") ?? downloads.find((entry) => entry.file_name);
+  if (!download?.file_name) {
+    return void 0;
+  }
+  return `${path4.parse(download.file_name).name}.txt`;
+}
+async function attachTexts(waited) {
+  const comparisons = waited.comparisons ?? [];
+  await Promise.all(
+    comparisons.map(async (comparison) => {
+      const textUrl = comparison.text_url;
+      const textFileName = resolveTextFileName(comparison);
+      delete comparison.text_url;
+      delete comparison.text_file_name;
+      if (!textUrl || !comparison.version_mapping_id) {
+        return;
+      }
+      const textPath = await downloadText(
+        textUrl,
+        TEXT_DIRECTORY,
+        comparison.version_mapping_id,
+        textFileName
+      );
+      if (textPath) {
+        comparison.text_available = true;
+      }
+    })
+  );
+}
+var TEXT_READ_MAX_CHARS = 48e3;
+var TEXT_SEARCH_CONTEXT_LINES = 2;
+async function locateCachedText(documentId) {
+  const marker = `(${documentId.slice(0, 8)})`;
+  let entries;
+  try {
+    entries = await fs4.readdir(TEXT_DIRECTORY);
+  } catch {
+    return void 0;
+  }
+  const match = entries.find(
+    (entry) => (entry.endsWith(".md") || entry.endsWith(".txt")) && entry.includes(marker)
+  );
+  return match ? path4.join(TEXT_DIRECTORY, match) : void 0;
+}
+async function ensureText(versionStoryId, kind, documentId) {
+  const cachedPath = await locateCachedText(documentId);
+  if (cachedPath) {
+    return { filePath: cachedPath };
+  }
+  let textUrl;
+  let textFileName;
+  if (kind === "comparison") {
+    const waited = await remoteClient.callTool("get_redlines", {
+      version_story_id: versionStoryId,
+      version_mapping_ids: [documentId]
+    });
+    if (waited.status !== "ready") {
+      return { unavailable: `The comparison is not ready (status: ${String(waited.status)}), so no text rendering exists yet.` };
+    }
+    const comparison = (waited.comparisons ?? []).find(
+      (entry) => entry.version_mapping_id === documentId
+    );
+    textUrl = comparison?.text_url;
+    textFileName = comparison ? resolveTextFileName(comparison) : void 0;
+  } else {
+    const generatedDocumentTools = {
+      merged: { remoteToolName: "get_merged_document", idField: "merge_version_id" },
+      combined: { remoteToolName: "get_combined_document", idField: "combine_version_id" },
+      version_history: { remoteToolName: "get_version_history_document", idField: "version_history_version_id" }
+    };
+    const { remoteToolName, idField } = generatedDocumentTools[kind];
+    const waited = await remoteClient.callTool(remoteToolName, {
+      version_story_id: versionStoryId,
+      [idField]: documentId
+    });
+    if (waited.status !== "ready") {
+      return { unavailable: `The document is not ready (status: ${String(waited.status)}), so no text rendering exists yet.` };
+    }
+    textUrl = waited.text_url;
+    textFileName = waited.text_file_name;
+  }
+  if (!textUrl) {
+    return { unavailable: "No text rendering exists for this document." };
+  }
+  const downloadedPath = await downloadText(textUrl, TEXT_DIRECTORY, documentId, textFileName);
+  if (!downloadedPath) {
+    return { unavailable: "The text rendering could not be downloaded." };
+  }
+  return { filePath: downloadedPath };
+}
+function sliceText(text, offset, maxChars) {
+  const slice = text.slice(offset, offset + maxChars);
+  return {
+    total_chars: text.length,
+    offset,
+    returned_chars: slice.length,
+    has_more: offset + slice.length < text.length,
+    text: slice
+  };
+}
+function searchText(text, needle, contextLines, maxChars) {
+  const lines = text.split("\n");
+  const lineStartOffsets = new Array(lines.length);
+  let cursor = 0;
+  for (let index = 0; index < lines.length; index += 1) {
+    lineStartOffsets[index] = cursor;
+    cursor += lines[index].length + 1;
+  }
+  const needleLowerCase = needle.toLowerCase();
+  const matchLineIndices = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    if (lines[index].toLowerCase().includes(needleLowerCase)) {
+      matchLineIndices.push(index);
+    }
+  }
+  const blocks = [];
+  for (const matchIndex of matchLineIndices) {
+    const start = Math.max(0, matchIndex - contextLines);
+    const end = Math.min(lines.length - 1, matchIndex + contextLines);
+    const previous = blocks[blocks.length - 1];
+    if (previous && start <= previous.end + 1) {
+      previous.end = Math.max(previous.end, end);
+    } else {
+      blocks.push({ start, end });
+    }
+  }
+  const renderedBlocks = [];
+  let usedChars = 0;
+  let truncated = false;
+  for (const block of blocks) {
+    const blockText = `@char ${lineStartOffsets[block.start]}
+` + lines.slice(block.start, block.end + 1).join("\n");
+    const remainingChars = maxChars - usedChars;
+    if (blockText.length > remainingChars) {
+      truncated = true;
+      if (renderedBlocks.length === 0) {
+        renderedBlocks.push(blockText.slice(0, Math.max(remainingChars, 0)));
+      }
+      break;
+    }
+    renderedBlocks.push(blockText);
+    usedChars += blockText.length + 2;
+  }
+  return {
+    total_chars: text.length,
+    total_matches: matchLineIndices.length,
+    truncated,
+    has_more: truncated,
+    text: renderedBlocks.join("\n\n")
+  };
 }
 function defaultOutputDirectory(args) {
   const basePath = args.base_file_path ?? args.comparison_groups?.[0]?.base_file_path;
-  return basePath ? path5.dirname(basePath) : DEFAULT_OUTPUT_DIRECTORY;
+  return basePath ? path4.dirname(basePath) : DEFAULT_OUTPUT_DIRECTORY;
+}
+function readZipEntry(fileBuffer, entryName) {
+  const EOCD_SIGNATURE = 101010256;
+  const CENTRAL_DIRECTORY_SIGNATURE = 33639248;
+  const eocdSearchFloor = Math.max(0, fileBuffer.length - 22 - 65535);
+  let eocdOffset = -1;
+  for (let offset = fileBuffer.length - 22; offset >= eocdSearchFloor; offset -= 1) {
+    if (fileBuffer.readUInt32LE(offset) === EOCD_SIGNATURE) {
+      eocdOffset = offset;
+      break;
+    }
+  }
+  if (eocdOffset < 0) {
+    return null;
+  }
+  const entryCount = fileBuffer.readUInt16LE(eocdOffset + 10);
+  let cursor = fileBuffer.readUInt32LE(eocdOffset + 16);
+  for (let index = 0; index < entryCount; index += 1) {
+    if (cursor + 46 > fileBuffer.length || fileBuffer.readUInt32LE(cursor) !== CENTRAL_DIRECTORY_SIGNATURE) {
+      return null;
+    }
+    const compressionMethod = fileBuffer.readUInt16LE(cursor + 10);
+    const compressedSize = fileBuffer.readUInt32LE(cursor + 20);
+    const nameLength = fileBuffer.readUInt16LE(cursor + 28);
+    const extraLength = fileBuffer.readUInt16LE(cursor + 30);
+    const commentLength = fileBuffer.readUInt16LE(cursor + 32);
+    const localHeaderOffset = fileBuffer.readUInt32LE(cursor + 42);
+    const name = fileBuffer.toString("utf8", cursor + 46, cursor + 46 + nameLength);
+    if (name === entryName) {
+      const localNameLength = fileBuffer.readUInt16LE(localHeaderOffset + 26);
+      const localExtraLength = fileBuffer.readUInt16LE(localHeaderOffset + 28);
+      const dataStart = localHeaderOffset + 30 + localNameLength + localExtraLength;
+      const compressedData = fileBuffer.subarray(dataStart, dataStart + compressedSize);
+      if (compressionMethod === 0) {
+        return Buffer.from(compressedData);
+      }
+      if (compressionMethod === 8) {
+        return zlib.inflateRawSync(compressedData);
+      }
+      return null;
+    }
+    cursor += 46 + nameLength + extraLength + commentLength;
+  }
+  return null;
+}
+function decodeXmlEntities(value) {
+  return value.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&apos;/g, "'").replace(/&amp;/g, "&");
+}
+function readCoreProperty(coreXml, tagName) {
+  const match = coreXml.match(new RegExp(`<${tagName}[^>]*>([^<]*)</${tagName}>`));
+  const value = match?.[1]?.trim();
+  return value ? decodeXmlEntities(value) : null;
 }
 async function startServer() {
-  await Promise.all([initializeInstructionBundle(), initializePluginUpdate()]);
-  const instructions = [serverInstructions(), pluginUpdateInstructions()].filter(Boolean).join("\n\n");
+  await initializeInstructionBundle();
   const server = new McpServer(
-    { name: "compare", version: PLUGIN_VERSION },
-    { instructions }
-  );
-  server.registerTool(
-    "download_plugin_update",
     {
-      title: "Download Version Story Plugin Update",
-      description: toolDescription("download_plugin_update")
+      name: "compare",
+      title: "Version Story",
+      version: "0.27.2",
+      websiteUrl: "https://versionstory.com",
+      icons: [{ src: ICON_URL, mimeType: "image/png", sizes: ["512x512"] }]
     },
-    async () => {
-      try {
-        return jsonResult(await downloadPluginUpdate(), false);
-      } catch (error2) {
-        return errorResult(error2);
-      }
-    }
+    { instructions: serverInstructions() }
   );
   server.registerTool(
     "prepare_documents",
     {
       title: "Prepare Documents",
-      description: toolDescription("prepare_documents")
+      description: toolDescription("prepare_documents"),
+      annotations: { title: "Prepare Documents", destructiveHint: false, idempotentHint: true, openWorldHint: false }
     },
     async () => {
       try {
-        await fs5.mkdir(STAGING_DIRECTORY, { recursive: true });
+        await fs4.mkdir(STAGING_DIRECTORY, { recursive: true });
         return jsonResult({
           staging_directory: STAGING_DIRECTORY,
           message: resultMessage("staging_directory_ready")
@@ -49906,6 +50138,7 @@ async function startServer() {
     {
       title: "Create Redlines",
       description: toolDescription("create_redlines"),
+      annotations: { title: "Create Redlines", destructiveHint: false, idempotentHint: false, openWorldHint: false },
       inputSchema: {
         ...createInputSchema,
         download_options: external_exports.array(external_exports.string()).optional(),
@@ -49917,7 +50150,7 @@ async function startServer() {
         const timer = new PhaseTimer();
         const { staged, uploadedFileNames } = await stageAndUpload(args, timer);
         const versionMappingIds = (staged.comparisons ?? []).map((comparison) => comparison.version_mapping_id).filter((id) => Boolean(id));
-        const outputDirectory = path5.resolve(args.output_directory ?? defaultOutputDirectory(args));
+        const outputDirectory = path4.resolve(args.output_directory ?? defaultOutputDirectory(args));
         const { waited, savedFiles } = await waitAndSave(
           staged.version_story_id,
           versionMappingIds.length > 0 ? versionMappingIds : void 0,
@@ -49956,6 +50189,7 @@ async function startServer() {
     {
       title: "Start Redlines",
       description: toolDescription("start_redlines"),
+      annotations: { title: "Start Redlines", destructiveHint: false, idempotentHint: false, openWorldHint: false },
       inputSchema: createInputSchema
     },
     async (args) => {
@@ -49978,12 +50212,13 @@ async function startServer() {
     }
   );
   server.registerTool(
-    "get_redlines",
+    "save_redlines",
     {
-      title: "Get Redlines",
-      description: toolDescription("get_redlines"),
+      title: "Save Redlines",
+      description: toolDescription("save_redlines"),
+      annotations: { title: "Save Redlines", destructiveHint: false, idempotentHint: true, openWorldHint: false },
       inputSchema: {
-        version_story_id: external_exports.string(),
+        version_story_id: external_exports.string().describe("ID of the project holding the comparisons."),
         version_mapping_ids: external_exports.array(external_exports.string()).optional(),
         download_options: external_exports.array(external_exports.string()).optional(),
         output_directory: external_exports.string().optional().describe("Directory to save redlines into; defaults to the user's Downloads folder")
@@ -49992,7 +50227,7 @@ async function startServer() {
     async ({ version_story_id, version_mapping_ids, download_options, output_directory }) => {
       try {
         const timer = new PhaseTimer();
-        const outputDirectory = path5.resolve(output_directory ?? DEFAULT_OUTPUT_DIRECTORY);
+        const outputDirectory = path4.resolve(output_directory ?? DEFAULT_OUTPUT_DIRECTORY);
         const { waited, savedFiles } = await waitAndSave(
           version_story_id,
           version_mapping_ids,
@@ -50018,10 +50253,457 @@ async function startServer() {
     }
   );
   server.registerTool(
+    "read_text",
+    {
+      title: "Read Text",
+      description: toolDescription("read_text"),
+      annotations: { title: "Read Text", readOnlyHint: true },
+      inputSchema: {
+        version_story_id: external_exports.string(),
+        version_mapping_id: external_exports.string().optional().describe("Reads a comparison's text rendering"),
+        merge_version_id: external_exports.string().optional().describe("Reads a merged document's text rendering"),
+        combine_version_id: external_exports.string().optional().describe("Reads a combined document's text rendering"),
+        version_history_version_id: external_exports.string().optional().describe("Reads a version history document's text rendering"),
+        offset: external_exports.number().int().min(0).optional().describe("Character offset to start reading from; defaults to 0"),
+        max_chars: external_exports.number().int().min(1).optional().describe("Maximum characters to return; defaults to 48000, its maximum"),
+        search: external_exports.string().optional().describe("Case-insensitive plain-text term; returns matching lines with context instead of a slice"),
+        context_lines: external_exports.number().int().min(0).optional().describe("Lines of context around each search match; defaults to 2")
+      }
+    },
+    async ({
+      version_story_id,
+      version_mapping_id,
+      merge_version_id,
+      combine_version_id,
+      version_history_version_id,
+      offset,
+      max_chars,
+      search,
+      context_lines
+    }) => {
+      try {
+        const providedIds = [
+          ["version_mapping_id", "comparison", version_mapping_id],
+          ["merge_version_id", "merged", merge_version_id],
+          ["combine_version_id", "combined", combine_version_id],
+          ["version_history_version_id", "version_history", version_history_version_id]
+        ].filter(([, , value]) => value);
+        if (providedIds.length !== 1) {
+          return jsonResult({
+            text_available: false,
+            message: "Pass exactly one of version_mapping_id, merge_version_id, combine_version_id, or version_history_version_id."
+          });
+        }
+        const [idField, kind, documentId] = providedIds[0];
+        const located = await ensureText(version_story_id, kind, documentId);
+        if ("unavailable" in located) {
+          return jsonResult({ [idField]: documentId, text_available: false, message: located.unavailable });
+        }
+        const text = await fs4.readFile(located.filePath, "utf-8");
+        const cappedMaxChars = Math.min(max_chars ?? TEXT_READ_MAX_CHARS, TEXT_READ_MAX_CHARS);
+        if (search) {
+          return jsonResult({
+            [idField]: documentId,
+            search,
+            ...searchText(text, search, context_lines ?? TEXT_SEARCH_CONTEXT_LINES, cappedMaxChars)
+          });
+        }
+        return jsonResult({
+          [idField]: documentId,
+          ...sliceText(text, offset ?? 0, cappedMaxChars)
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "create_merged_document",
+    {
+      title: "Create Merged Document",
+      description: toolDescription("create_merged_document"),
+      annotations: { title: "Create Merged Document", destructiveHint: false, idempotentHint: false, openWorldHint: false },
+      inputSchema: {
+        base_file_path: external_exports.string().describe("Absolute local path of the base document every revision started from"),
+        base_file_name: external_exports.string().optional().describe("Clean original name of the base document"),
+        next_version_file_paths: external_exports.array(external_exports.string()).min(2).describe("Absolute local paths of the revised documents; the result does not depend on their order"),
+        next_version_file_names: external_exports.array(external_exports.string()).optional().describe("Clean original names of the revised documents"),
+        next_version_authors: external_exports.array(external_exports.string()).optional().describe("Author label for each revised document's tracked changes, in the same order as the revisions"),
+        merged_file_name: external_exports.string().optional().describe("Name for the merged document"),
+        version_story_name: external_exports.string().optional().describe("Name for a newly created project"),
+        version_story_id: external_exports.string().optional().describe("Add to this existing project instead of creating one"),
+        output_directory: external_exports.string().optional().describe("Defaults to the base document's folder")
+      }
+    },
+    async (args) => {
+      try {
+        const timer = new PhaseTimer();
+        await assertFilesExist([args.base_file_path, ...args.next_version_file_paths]);
+        const staged = await remoteClient.callTool("create_merge", {
+          base_file_path: args.base_file_path,
+          base_file_name: args.base_file_name,
+          next_version_file_paths: args.next_version_file_paths,
+          next_version_file_names: args.next_version_file_names,
+          next_version_authors: args.next_version_authors,
+          merged_file_name: args.merged_file_name,
+          version_story_name: args.version_story_name,
+          version_story_id: args.version_story_id
+        });
+        timer.mark("create_session");
+        const uploadedFileNames = await uploadStagedSourceDocuments(staged, timer);
+        const merge2 = staged.merge ?? {};
+        const outputDirectory = path4.resolve(args.output_directory ?? path4.dirname(args.base_file_path));
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_merged_document",
+          { version_story_id: staged.version_story_id, merge_version_id: merge2.merge_version_id },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({
+            ...waited,
+            // The remote processing message tells connector agents to wait with the same
+            // arguments; for this one-call tool the follow-up is save_merged_document.
+            ...waited.status === "processing" ? { message: resultMessage("merged_document_processing") } : {},
+            uploaded_file_names: uploadedFileNames,
+            version_story_name: staged.version_story_name,
+            version_story_url: staged.version_story_url,
+            timings_milliseconds: timer.finish()
+          });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("merged_document_saved"),
+          version_story_id: staged.version_story_id,
+          version_story_name: staged.version_story_name,
+          version_story_url: staged.version_story_url,
+          merge: waited.merge ?? merge2,
+          ...waited.text_available ? { text_available: true } : {},
+          uploaded_file_names: uploadedFileNames,
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "save_merged_document",
+    {
+      title: "Save Merged Document",
+      description: toolDescription("save_merged_document"),
+      annotations: { title: "Save Merged Document", destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      inputSchema: {
+        version_story_id: external_exports.string().describe("ID of the project holding the merge."),
+        merge_version_id: external_exports.string().describe("merge.merge_version_id from the create_merged_document result"),
+        output_directory: external_exports.string().optional().describe("Directory to save the merged document into; defaults to the user's Downloads folder")
+      }
+    },
+    async ({ version_story_id, merge_version_id, output_directory }) => {
+      try {
+        const timer = new PhaseTimer();
+        const outputDirectory = path4.resolve(output_directory ?? DEFAULT_OUTPUT_DIRECTORY);
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_merged_document",
+          { version_story_id, merge_version_id },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({ ...waited, timings_milliseconds: timer.finish() });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("merged_document_saved"),
+          version_story_id,
+          merge: waited.merge,
+          ...waited.text_available ? { text_available: true } : {},
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "create_combined_document",
+    {
+      title: "Create Combined Document",
+      description: toolDescription("create_combined_document"),
+      annotations: { title: "Create Combined Document", destructiveHint: false, idempotentHint: false, openWorldHint: false },
+      inputSchema: {
+        document_file_paths: external_exports.array(external_exports.string()).min(2).describe("Absolute local paths of the documents to combine; the result does not depend on their order"),
+        document_file_names: external_exports.array(external_exports.string()).optional().describe("Clean original names of the documents"),
+        document_authors: external_exports.array(external_exports.string()).optional().describe("Author label for each document's tracked changes, in the same order as the documents"),
+        combined_file_name: external_exports.string().optional().describe("Name for the combined document"),
+        version_story_name: external_exports.string().optional().describe("Name for a newly created project"),
+        version_story_id: external_exports.string().optional().describe("Add to this existing project instead of creating one"),
+        output_directory: external_exports.string().optional().describe("Defaults to the first document's folder")
+      }
+    },
+    async (args) => {
+      try {
+        const timer = new PhaseTimer();
+        await assertFilesExist(args.document_file_paths);
+        const staged = await remoteClient.callTool("create_combine", {
+          document_file_paths: args.document_file_paths,
+          document_file_names: args.document_file_names,
+          document_authors: args.document_authors,
+          combined_file_name: args.combined_file_name,
+          version_story_name: args.version_story_name,
+          version_story_id: args.version_story_id
+        });
+        timer.mark("create_session");
+        const uploadedFileNames = await uploadStagedSourceDocuments(staged, timer);
+        const combine = staged.combine ?? {};
+        const outputDirectory = path4.resolve(args.output_directory ?? path4.dirname(args.document_file_paths[0]));
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_combined_document",
+          { version_story_id: staged.version_story_id, combine_version_id: combine.combine_version_id },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({
+            ...waited,
+            // The remote processing message tells connector agents to wait with the same
+            // arguments; for this one-call tool the follow-up is save_combined_document.
+            ...waited.status === "processing" ? { message: resultMessage("combined_document_processing") } : {},
+            uploaded_file_names: uploadedFileNames,
+            version_story_name: staged.version_story_name,
+            version_story_url: staged.version_story_url,
+            timings_milliseconds: timer.finish()
+          });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("combined_document_saved"),
+          version_story_id: staged.version_story_id,
+          version_story_name: staged.version_story_name,
+          version_story_url: staged.version_story_url,
+          combine: waited.combine ?? combine,
+          ...waited.text_available ? { text_available: true } : {},
+          uploaded_file_names: uploadedFileNames,
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "save_combined_document",
+    {
+      title: "Save Combined Document",
+      annotations: { title: "Save Combined Document", destructiveHint: false, idempotentHint: true, openWorldHint: false },
+      description: toolDescription("save_combined_document"),
+      inputSchema: {
+        version_story_id: external_exports.string().describe("ID of the project holding the combine."),
+        combine_version_id: external_exports.string().describe("combine.combine_version_id from the create_combined_document result"),
+        output_directory: external_exports.string().optional().describe("Directory to save the combined document into; defaults to the user's Downloads folder")
+      }
+    },
+    async ({ version_story_id, combine_version_id, output_directory }) => {
+      try {
+        const timer = new PhaseTimer();
+        const outputDirectory = path4.resolve(output_directory ?? DEFAULT_OUTPUT_DIRECTORY);
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_combined_document",
+          { version_story_id, combine_version_id },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({ ...waited, timings_milliseconds: timer.finish() });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("combined_document_saved"),
+          version_story_id,
+          combine: waited.combine,
+          ...waited.text_available ? { text_available: true } : {},
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "create_version_history_document",
+    {
+      title: "Create Version History Document",
+      description: toolDescription("create_version_history_document"),
+      annotations: {
+        title: "Create Version History Document",
+        destructiveHint: false,
+        idempotentHint: false,
+        openWorldHint: false
+      },
+      inputSchema: {
+        version_file_paths: external_exports.array(external_exports.string()).min(2).describe("Absolute local paths of the versions, ordered OLDEST first"),
+        version_file_names: external_exports.array(external_exports.string()).optional().describe("Clean original names of the versions, same order"),
+        version_authors: external_exports.array(external_exports.string()).optional().describe("Author label per version, same order; defaults to each version's name"),
+        version_story_name: external_exports.string().optional().describe("Name for a newly created project"),
+        version_story_id: external_exports.string().optional().describe("Add to this existing project instead of creating one"),
+        output_directory: external_exports.string().optional().describe("Defaults to the newest version's folder")
+      }
+    },
+    async (args) => {
+      try {
+        const timer = new PhaseTimer();
+        await assertFilesExist(args.version_file_paths);
+        const staged = await remoteClient.callTool("create_version_history", {
+          version_file_paths: args.version_file_paths,
+          version_file_names: args.version_file_names,
+          version_authors: args.version_authors,
+          version_story_name: args.version_story_name,
+          version_story_id: args.version_story_id
+        });
+        timer.mark("create_session");
+        const uploadedFileNames = await uploadStagedSourceDocuments(staged, timer);
+        const versionHistory = staged.version_history ?? {};
+        const newestVersionPath = args.version_file_paths[args.version_file_paths.length - 1];
+        const outputDirectory = path4.resolve(args.output_directory ?? path4.dirname(newestVersionPath));
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_version_history_document",
+          {
+            version_story_id: staged.version_story_id,
+            version_history_version_id: versionHistory.version_history_version_id
+          },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({
+            ...waited,
+            // Same message swap as create_merged_document: the follow-up here is
+            // save_version_history_document, not a re-create.
+            ...waited.status === "processing" ? { message: resultMessage("version_history_document_processing") } : {},
+            uploaded_file_names: uploadedFileNames,
+            version_story_name: staged.version_story_name,
+            version_story_url: staged.version_story_url,
+            timings_milliseconds: timer.finish()
+          });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("version_history_document_saved"),
+          version_story_id: staged.version_story_id,
+          version_story_name: staged.version_story_name,
+          version_story_url: staged.version_story_url,
+          version_history: waited.version_history ?? versionHistory,
+          ...waited.text_available ? { text_available: true } : {},
+          uploaded_file_names: uploadedFileNames,
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "save_version_history_document",
+    {
+      title: "Save Version History Document",
+      description: toolDescription("save_version_history_document"),
+      annotations: {
+        title: "Save Version History Document",
+        destructiveHint: false,
+        idempotentHint: true,
+        openWorldHint: false
+      },
+      inputSchema: {
+        version_story_id: external_exports.string().describe("ID of the project holding the version chain."),
+        version_history_version_id: external_exports.string().describe("version_history.version_history_version_id from the create result"),
+        output_directory: external_exports.string().optional().describe("Directory to save the version history document into; defaults to the user's Downloads folder")
+      }
+    },
+    async ({ version_story_id, version_history_version_id, output_directory }) => {
+      try {
+        const timer = new PhaseTimer();
+        const outputDirectory = path4.resolve(output_directory ?? DEFAULT_OUTPUT_DIRECTORY);
+        const { waited, savedFiles } = await waitAndSaveGeneratedDocument(
+          "get_version_history_document",
+          { version_story_id, version_history_version_id },
+          outputDirectory,
+          timer,
+          GENERATION_WAIT_CAP_MILLISECONDS
+        );
+        if (!savedFiles) {
+          return jsonResult({ ...waited, timings_milliseconds: timer.finish() });
+        }
+        return jsonResult({
+          status: "ready",
+          message: resultMessage("version_history_document_saved"),
+          version_story_id,
+          version_history: waited.version_history,
+          ...waited.text_available ? { text_available: true } : {},
+          saved_files: savedFiles,
+          timings_milliseconds: timer.finish()
+        });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
+    "read_document_authors",
+    {
+      title: "Read Document Authors",
+      description: toolDescription("read_document_authors"),
+      annotations: { title: "Read Document Authors", readOnlyHint: true },
+      inputSchema: {
+        file_paths: external_exports.array(external_exports.string()).min(1).describe("Absolute local paths of the documents to read")
+      }
+    },
+    async ({ file_paths }) => {
+      try {
+        const documents = await Promise.all(
+          file_paths.map(async (filePath) => {
+            try {
+              const fileBuffer = await fs4.readFile(filePath);
+              const coreEntry = readZipEntry(fileBuffer, "docProps/core.xml");
+              if (!coreEntry) {
+                return { file_path: filePath, metadata_available: false };
+              }
+              const coreXml = coreEntry.toString("utf8");
+              return {
+                file_path: filePath,
+                metadata_available: true,
+                creator: readCoreProperty(coreXml, "dc:creator"),
+                last_modified_by: readCoreProperty(coreXml, "cp:lastModifiedBy"),
+                created: readCoreProperty(coreXml, "dcterms:created"),
+                modified: readCoreProperty(coreXml, "dcterms:modified")
+              };
+            } catch (error2) {
+              const message = error2 instanceof Error ? error2.message : String(error2);
+              return { file_path: filePath, metadata_available: false, error: message };
+            }
+          })
+        );
+        return jsonResult({ documents });
+      } catch (error2) {
+        return errorResult(error2);
+      }
+    }
+  );
+  server.registerTool(
     "sign_in",
     {
       title: "Sign In to Version Story",
-      description: toolDescription("sign_in")
+      description: toolDescription("sign_in"),
+      annotations: { title: "Sign In to Version Story", destructiveHint: false, openWorldHint: true }
     },
     async () => {
       try {
@@ -50057,6 +50739,7 @@ async function startServer() {
     {
       title: "Complete Sign-In",
       description: toolDescription("complete_sign_in"),
+      annotations: { title: "Complete Sign-In", destructiveHint: false, openWorldHint: true },
       inputSchema: {
         callback_url_or_code: external_exports.string().describe("The full localhost callback address the user landed on, or its code value.")
       }
@@ -50076,7 +50759,11 @@ async function startServer() {
   );
   server.registerTool(
     "check_connection",
-    { title: "Check Connection Status", description: toolDescription("check_connection") },
+    {
+      title: "Check Connection Status",
+      description: toolDescription("check_connection"),
+      annotations: { title: "Check Connection Status", readOnlyHint: true }
+    },
     async () => {
       try {
         return jsonResult(await remoteClient.callTool("check_connection", {}));
@@ -50087,7 +50774,11 @@ async function startServer() {
   );
   server.registerTool(
     "list_projects",
-    { title: "List Projects", description: toolDescription("list_projects") },
+    {
+      title: "List Projects",
+      description: toolDescription("list_projects"),
+      annotations: { title: "List Projects", readOnlyHint: true }
+    },
     async () => {
       try {
         return jsonResult(await remoteClient.callTool("list_projects", {}));
@@ -50101,6 +50792,7 @@ async function startServer() {
     {
       title: "List Project Comparisons",
       description: toolDescription("list_project_comparisons"),
+      annotations: { title: "List Project Comparisons", readOnlyHint: true },
       inputSchema: { version_story_id: external_exports.string() }
     },
     async ({ version_story_id }) => {
