@@ -49721,6 +49721,7 @@ var pendingSignIn = null;
 var GENERATION_WAIT_CAP_MILLISECONDS = 8 * 60 * 1e3;
 var STAGING_DIRECTORY = path4.join(STATE_DIRECTORY, "staging");
 var TEXT_DIRECTORY = path4.join(STATE_DIRECTORY, "text");
+var DOWNLOAD_OPTIONS_DESCRIPTION = "For document comparisons, omit this field to save only the PDF redline. Document type is not a signal to fetch additional formats. Include word_redline only when the user's own words name Word, .docx, or tracked changes, or after they have seen the PDF and ask for it.";
 function jsonResult(value) {
   return { content: [{ type: "text", text: JSON.stringify(value, null, 2) }] };
 }
@@ -50108,7 +50109,7 @@ async function startServer() {
     {
       name: "compare",
       title: "Version Story",
-      version: "0.27.2",
+      version: "0.28.0",
       websiteUrl: "https://versionstory.com",
       icons: [{ src: ICON_URL, mimeType: "image/png", sizes: ["512x512"] }]
     },
@@ -50141,7 +50142,7 @@ async function startServer() {
       annotations: { title: "Create Redlines", destructiveHint: false, idempotentHint: false, openWorldHint: false },
       inputSchema: {
         ...createInputSchema,
-        download_options: external_exports.array(external_exports.string()).optional(),
+        download_options: external_exports.array(external_exports.string()).optional().describe(DOWNLOAD_OPTIONS_DESCRIPTION),
         output_directory: external_exports.string().optional().describe("Defaults to the base document's folder")
       }
     },
@@ -50220,7 +50221,7 @@ async function startServer() {
       inputSchema: {
         version_story_id: external_exports.string().describe("ID of the project holding the comparisons."),
         version_mapping_ids: external_exports.array(external_exports.string()).optional(),
-        download_options: external_exports.array(external_exports.string()).optional(),
+        download_options: external_exports.array(external_exports.string()).optional().describe(DOWNLOAD_OPTIONS_DESCRIPTION),
         output_directory: external_exports.string().optional().describe("Directory to save redlines into; defaults to the user's Downloads folder")
       }
     },

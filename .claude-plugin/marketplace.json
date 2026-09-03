@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "version-story",
-      "source": "./plugins/version-story",
-      "description": "Create Version Story redlines from documents on your computer."
+      "source": "./claude",
+      "description": "Create Version Story redlines, merged documents, and version histories from documents on your computer."
     }
   ]
 }

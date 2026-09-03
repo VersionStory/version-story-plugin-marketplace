@@ -1,6 +1,6 @@
 ---
 name: compare
-description: Compare document versions and produce true redlines with Version Story, working from files on the user's computer or attached to the conversation.
+description: Compare two versions of a document and produce a true redline with Version Story. Use for any request to redline, blackline, compare, diff, or mark up the changes between versions, to show what changed, or to produce tracked changes, from files on the user's computer or attached to the conversation.
 ---
 
 # Compare documents with Version Story

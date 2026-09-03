@@ -1,6 +1,6 @@
 ---
 name: version-history
-description: Build a version history document across a document's versions with Version Story — one Word document in which every surviving change is a tracked change attributed to the version that introduced it.
+description: Build a version history document across a document's versions with Version Story, one Word document in which every surviving change is a tracked change attributed to the version that introduced it. Use when the user asks who changed what, which draft introduced a clause, or how a document evolved across versions.
 ---
 
 # Trace who changed what with Version Story

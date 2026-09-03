@@ -1,6 +1,6 @@
 ---
 name: merge
-description: Merge separately edited versions of one document into a single Word draft whose tracked changes are labeled by the revision they came from, with Version Story — working from files on the user's computer or attached to the conversation.
+description: Merge separately edited versions of one document into a single Word draft whose tracked changes are labeled by the revision they came from, with Version Story. Use when the user wants to merge, consolidate, or reconcile edits from several reviewers or parties into one draft, from files on the user's computer or attached to the conversation.
 ---
 
 # Merge document versions with Version Story

@@ -1,6 +1,6 @@
 ---
 name: combine
-description: Combine two or more independent documents that share no common original into a single Word draft whose tracked changes are labeled by the document they came from, with Version Story — working from files on the user's computer or attached to the conversation.
+description: Combine two or more independent documents that share no common original into a single Word draft whose tracked changes are labeled by the document they came from, with Version Story. Use when the user wants separately written drafts folded into one document, from files on the user's computer or attached to the conversation.
 ---
 
 # Combine independent documents with Version Story

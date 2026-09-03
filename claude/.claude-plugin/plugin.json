@@ -1,7 +1,7 @@
 {
   "name": "version-story",
   "displayName": "Version Story",
-  "version": "0.27.2",
+  "version": "0.28.0",
   "description": "Create Version Story redlines, merged documents, and version histories from documents on your computer.",
   "author": {
     "name": "Version Story"
