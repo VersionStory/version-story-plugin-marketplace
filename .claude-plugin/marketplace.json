@@ -10,7 +10,7 @@
     {
       "name": "version-story",
       "source": "./claude",
-      "description": "Create Version Story redlines, merged documents, and version histories from documents on your computer."
+      "description": "Compare two versions of a Word or PDF document and get a true redline with tracked changes. Also merges parallel edits and builds version histories, from documents on your computer."
     }
   ]
 }
