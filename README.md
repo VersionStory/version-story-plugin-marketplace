@@ -38,7 +38,7 @@ In Claude Code:
 ```
 
 Organization owners can instead download the
-[latest production plugin](https://mcp-compare.versionstory.com/plugin-download) and upload it
+[latest production plugin](https://assets.versionstory.com/plugins/version-story-mcp-plugin.plugin) and upload it
 under **Organization settings → Plugins → Add plugins → Upload a file**. The plugin checks for
 a newer release when it starts.
 
