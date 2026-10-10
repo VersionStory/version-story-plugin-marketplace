@@ -1,15 +1,8 @@
 {
   "mcpServers": {
-    "compare": {
-      "type": "stdio",
-      "command": "node",
-      "args": [
-        "${CLAUDE_PLUGIN_ROOT}/server/index.js"
-      ],
-      "env": {
-        "VERSION_STORY_MCP_URL": "https://mcp-compare.versionstory.com/mcp",
-        "VERSION_STORY_CLIENT_STATE_DIRECTORY": "${CLAUDE_PLUGIN_DATA}"
-      }
+    "version-story": {
+      "type": "http",
+      "url": "https://mcp-compare.versionstory.com/mcp"
     }
   }
 }

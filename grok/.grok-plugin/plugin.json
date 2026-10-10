@@ -1,7 +1,8 @@
 {
   "name": "version-story",
-  "version": "0.28.0",
-  "description": "Git for lawyers. Diff, merge, and blame for Word and PDF documents, returned as the redlines lawyers use: a PDF or Word tracked-changes redline, plus a text rendering the agent can read. Compare two versions of a contract, merge parallel edits into one draft, or trace which version introduced each change. Deterministic comparison engine behind a hosted MCP server with OAuth. Version Story account required.",
+  "displayName": "Version Story",
+  "version": "0.32.0",
+  "description": "Compare two versions of a Word or PDF document and get a true redline: Word tracked changes or a PDF. Also edits documents as tracked changes, merges parallel revisions, combines independent drafts, and builds version histories. Hosted MCP server with OAuth; Version Story account required.",
   "author": {
     "name": "Version Story",
     "url": "https://versionstory.com"
@@ -13,6 +14,34 @@
     "version story",
     "versionstory",
     "version story compare",
-    "version story redline"
+    "version story redline",
+    "compare",
+    "comparison",
+    "compare-documents",
+    "document-comparison",
+    "document",
+    "redline",
+    "redlines",
+    "redlining",
+    "blackline",
+    "tracked-changes",
+    "track-changes",
+    "markup",
+    "diff",
+    "legal",
+    "legal-documents",
+    "contracts",
+    "contract-comparison",
+    "lawyers",
+    "law-firm",
+    "word",
+    "docx",
+    "pdf",
+    "merge",
+    "combine",
+    "version-history",
+    "versions",
+    "drafts",
+    "revisions"
   ]
 }

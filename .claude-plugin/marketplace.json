@@ -10,7 +10,7 @@
     {
       "name": "version-story",
       "source": "./claude",
-      "description": "Compare two versions of a Word or PDF document and get a true redline with tracked changes. Also merges parallel edits and builds version histories, from documents on your computer."
+      "description": "Compare two versions of a Word or PDF document and get a true redline: Word tracked changes or a PDF. Also edits documents as tracked changes, merges parallel revisions, combines independent drafts, and builds version histories. Hosted MCP server with OAuth; Version Story account required."
     }
   ]
 }

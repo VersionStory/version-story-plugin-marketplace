@@ -1,15 +1,47 @@
 {
   "name": "version-story",
   "displayName": "Version Story",
-  "version": "0.28.0",
-  "description": "Create Version Story redlines, merged documents, and version histories from documents on your computer.",
+  "version": "0.32.0",
+  "description": "Compare two versions of a Word or PDF document and get a true redline: Word tracked changes or a PDF. Also edits documents as tracked changes, merges parallel revisions, combines independent drafts, and builds version histories. Hosted MCP server with OAuth; Version Story account required.",
   "author": {
-    "name": "Version Story"
+    "name": "Version Story",
+    "url": "https://versionstory.com"
   },
+  "homepage": "https://www.versionstory.com/developers/mcp/overview",
+  "repository": "https://github.com/VersionStory/version-story-plugin-marketplace",
+  "license": "MIT",
   "keywords": [
-    "version-story",
+    "version story",
+    "versionstory",
+    "version story compare",
+    "version story redline",
+    "compare",
+    "comparison",
+    "compare-documents",
     "document-comparison",
+    "document",
     "redline",
-    "local-mcp"
+    "redlines",
+    "redlining",
+    "blackline",
+    "tracked-changes",
+    "track-changes",
+    "markup",
+    "diff",
+    "legal",
+    "legal-documents",
+    "contracts",
+    "contract-comparison",
+    "lawyers",
+    "law-firm",
+    "word",
+    "docx",
+    "pdf",
+    "merge",
+    "combine",
+    "version-history",
+    "versions",
+    "drafts",
+    "revisions"
   ]
 }

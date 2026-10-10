@@ -33,7 +33,7 @@ the same two documents always give the same redline.
 | Claude desktop, Cowork, Claude Code | Plugin from this repository (below) | [Plugin installation guide](https://www.versionstory.com/developers/plugin/claude-installation-guide) |
 | Claude in a browser | Hosted connector | [Connector installation guide](https://www.versionstory.com/developers/mcp/claude-installation-guide) |
 | ChatGPT | Plugin from ChatGPT's plugin directory | [Version Story in the plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6ab400006af081919da14c4f6b0048c0), [ChatGPT installation guide](https://www.versionstory.com/developers/mcp/chatgpt-installation-guide) |
-| Grok Build | Plugin in [`grok/`](grok/) | [`grok/README.md`](grok/README.md) |
+| Grok Build | Plugin in [`grok/`](grok/) | [MCP server overview](https://www.versionstory.com/developers/mcp/overview) |
 | Any other MCP client | The hosted MCP server | [MCP server overview](https://www.versionstory.com/developers/mcp/overview) |
 
 A Version Story account is required, and is free to start at
@@ -57,7 +57,7 @@ In Claude Code:
 Organization owners can instead download the
 [latest production plugin](https://assets.versionstory.com/plugins/version-story-mcp-plugin.plugin)
 and upload it under **Organization settings → Plugins → Add plugins → Upload a file**. The
-plugin checks for a newer release when it starts.
+plugin connects to Version Story's hosted server, so its tools stay current without reinstalling.
 
 ### ChatGPT
 
@@ -66,7 +66,7 @@ plugin**, and authorize your Version Story account. There is nothing else to con
 
 ### Grok Build
 
-Run `/plugins` inside Grok Build and install **version-story**. See [`grok/README.md`](grok/README.md).
+Run `/plugins` inside Grok Build and install **version-story**.
 
 ### Any MCP client
 
@@ -106,8 +106,8 @@ the spot. We measured that on 25 real contract revisions:
 
 | Directory | Contents |
 | --- | --- |
-| [`claude/`](claude/) | The Claude plugin: a bundled local MCP server that uploads and downloads documents itself, plus the `compare`, `merge`, `combine`, and `version-history` skills |
-| [`grok/`](grok/) | The Grok Build plugin: a pointer to the hosted MCP server plus the same four skills |
+| [`claude/`](claude/) | The Claude plugin: a pointer to the hosted MCP server |
+| [`grok/`](grok/) | The Grok Build plugin: a pointer to the hosted MCP server |
 | [`.claude-plugin/`](.claude-plugin/) | The marketplace manifest Claude reads when this repository is added as a marketplace |
 
 `claude/` and `grok/` are generated from the Version Story backend by its plugin build and are
@@ -117,7 +117,7 @@ listings point at the hosted server.
 ## Releases
 
 Every directory is published together from one backend release and carries the same version.
-Tags mark each publish (`v0.28.0`).
+Tags mark each publish (`v0.32.0`).
 
 ## Support
 
